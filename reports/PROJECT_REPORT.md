@@ -1,380 +1,200 @@
-# Smart ATS Checker: Resume-to-Job Matching System
-## Academic Project Report — Deep Learning & Natural Language Processing
+# ResumeMind — Smart ATS Checker
+# ResumeMind: A Deep Learning-Based Smart ATS Checker and Resume-to-Job Matching System
 
-**Project Title:** Smart ATS Checker: Resume-to-Job Matching System  
-**Domain:** Deep Learning, Natural Language Processing, Information Retrieval  
-**Academic Degree:** Capstone Project / Thesis Report  
-**Academic Year:** 2025–2026  
+**Nimmagadda Harsha Vardhan (2023BCS0158)**  
+Dept. of Computer Science and Engineering  
+Indian Institute of Information Technology  
+Kottayam, Kerala, India  
+`nimmaga23bcs158@iiitkottayam.ac.in`  
+GitHub: [https://github.com/harsha9625](https://github.com/harsha9625)  
 
-### Project Contributors
-- **Nimmagadda Harsha Vardhan** (`2023BCS0158`)
-- **Konda Tej Akhilesh** (`2023BCS0160`)
-- **K Sai Nihal** (`2023BCD0045`)
+**Konda Tej Akhilesh (2023BCS0160)**  
+Dept. of Computer Science and Engineering  
+Indian Institute of Information Technology  
+Kottayam, Kerala, India  
+`konda23bcs160@iiitkottayam.ac.in`  
+GitHub: [https://github.com/tejakhileshkonda-ops](https://github.com/tejakhileshkonda-ops)  
 
----
-
-## Abstract
-
-In modern talent acquisition, traditional Applicant Tracking Systems (ATS) rely primarily on exact-match keyword matching and lexical heuristics. Such legacy approaches suffer from critical shortcomings: they fail to capture semantic synonyms (e.g., treating "Artificial Intelligence" and "Deep Learning" as completely disjoint tokens), are blind to contextual depth and project complexity, and offer candidates zero actionable diagnostic feedback regarding skill gaps.
-
-This project presents **Smart ATS Checker: Resume-to-Job Matching System**, an end-to-end deep learning and natural language processing system that evaluates candidate resumes against target job descriptions. The system leverages bidirectional transformer representations via `sentence-transformers/bert-base-nli-mean-tokens` to generate 768-dimensional dense document embeddings. Token representations are pooled using an attention-weighted mean pooling mechanism that isolates informative content while discarding zero-padding artifacts. A dual-engine scoring formulation combines **60% deep semantic similarity** (computed via angular cosine distance in high-dimensional latent space) with **40% explicit technical skill overlap** (extracted via compiled word-boundary regular expressions across a curated 45+ technical competencies taxonomy).
-
-Furthermore, the system provides automated candidate-to-catalog matching by ranking resumes against database opportunities, identifying matched competencies, and generating structured diagnostic skill gap reports. An interactive web platform implemented in Streamlit and a command-line interface (CLI) provide flexible deployment avenues. Empirical evaluations across diverse technical domains demonstrate that the proposed hybrid architecture significantly outperforms traditional keyword-based ATS baselines in both semantic fidelity and ranking stability.
-
-**Keywords:** Deep Learning, Natural Language Processing, Transformer, BERT, Sentence Embeddings, Attention-Weighted Mean Pooling, Cosine Similarity, Applicant Tracking Systems (ATS), Skill Gap Diagnostics, Resume-to-Job Recommendation.
+**K Sai Nihal (2023BCD0045)**  
+Dept. of Computer Science and Engineering  
+Indian Institute of Information Technology  
+Kottayam, Kerala, India  
+`kandima23bcd45@iiitkottayam.ac.in`  
 
 ---
 
-## Table of Contents
-1. [Introduction](#1-introduction)
-   - 1.1 Background and Motivation
-   - 1.2 Problem Statement
-   - 1.3 Project Objectives
-   - 1.4 Scope and Deliverables
-2. [Literature Review & Theoretical Foundations](#2-literature-review--theoretical-foundations)
-   - 2.1 Evolution of Resume Screening Systems
-   - 2.2 Lexical vs. Dense Vector Representations
-   - 2.3 Distributed Paragraph Vectors (Doc2Vec)
-   - 2.4 Bidirectional Encoder Representations from Transformers (BERT)
-   - 2.5 Sentence Transformers and Pooling Formulations
-3. [System Architecture & Methodology](#3-system-architecture--methodology)
-   - 3.1 High-Level Architecture
-   - 3.2 Document Ingestion and Preprocessing
-   - 3.3 Technical Competency Extraction Engine
-   - 3.4 Deep Transformer Vectorization Pipeline
-   - 3.5 Attention-Weighted Mean Pooling
-   - 3.6 Semantic Similarity Calculation
-   - 3.7 Hybrid Compatibility Formulation
-   - 3.8 Job Recommendation & Candidate Ranking
-4. [Mathematical Modeling & Formulations](#4-mathematical-modeling--formulations)
-   - 4.1 Transformer Self-Attention Mechanism
-   - 4.2 Attention-Weighted Mean Pooling Derivation
-   - 4.3 Cosine Distance in $\mathbb{R}^{768}$
-   - 4.4 Set-Theoretic Skill Overlap Metric
-   - 4.5 Composite Linear Convex Combination
-5. [Implementation Details & Software Architecture](#5-implementation-details--software-architecture)
-   - 5.1 Software Stack & Environment
-   - 5.2 Deep Learning Pipeline Implementation (PyTorch & Hugging Face)
-   - 5.3 Web Application Interface (Streamlit)
-   - 5.4 Command-Line Interface (CLI) Execution
-   - 5.5 Resource Caching and Performance Optimization
-6. [Experimental Evaluation & Results](#6-experimental-evaluation--results)
-   - 6.1 Evaluation Methodology & Datasets
-   - 6.2 Comparative Model Performance (Keyword vs. Doc2Vec vs. BERT)
-   - 6.3 Semantic Robustness & Synonym Matching Tests
-   - 6.4 Skill Gap Diagnostic Verification
-   - 6.5 Case Study Walkthroughs
-7. [Limitations & Future Research](#7-limitations--future-research)
-   - 7.1 Input Sequence Length Limitations
-   - 7.2 Open-Vocabulary Skill Recognition (NER)
-   - 7.3 Generative Feedback & Resume Optimization
-   - 7.4 Cross-Lingual Evaluation
-8. [Conclusion](#8-conclusion)
-9. [References](#9-references)
+### Abstract
+Abstract— The increasing volume of online job applications has created a significant challenge for organizations seeking to identify suitable candidates efficiently. Applicant Tracking Systems (ATS) are widely used to automate preliminary resume screening; however, conventional approaches that depend primarily on keyword frequency and exact textual matches may fail to recognize relevant qualifications expressed through alternative terminology or different linguistic structures. To address these limitations, this paper proposes ResumeMind, a deep learning-based resume analysis and job recommendation framework that applies Natural Language Processing (NLP) techniques to estimate the compatibility between candidate profiles and job requirements. The proposed system processes resumes and job descriptions through a text extraction and preprocessing pipeline before generating contextual representations using a pretrained BERT-based sentence-transformer model. An attention-mask-aware pooling strategy is used to obtain fixed-dimensional document embeddings while minimizing the influence of padding tokens. Semantic similarity between candidate profiles and job descriptions is then evaluated using cosine similarity and integrated with explicit technical skill matching to produce an interpretable compatibility score. In addition to ranking relevant job opportunities, the system identifies skills shared by the candidate and employer requirements, highlights potentially missing competencies, and provides structured feedback to support resume improvement. The framework is intended to overcome the limitations of purely lexical matching by considering contextual relationships between textual expressions. Its effectiveness can be evaluated against conventional keyword-based and document-embedding baselines using ranking metrics, skill extraction measures, and inference time. The proposed approach offers a practical foundation for intelligent recruitment assistance while retaining transparent matching evidence for users. Further validation on representative, manually reviewed resume–job datasets is necessary to establish its generalization ability, reliability, and suitability for real-world recruitment environments.
 
 ---
 
-## 1. Introduction
+### I. INTRODUCTION
+Recruitment platforms frequently receive a large number of applications for individual job openings, making manual resume evaluation time-consuming and difficult to manage. Applicant Tracking Systems (ATS) help recruiters organize applications and identify potential candidates based on job requirements. However, traditional screening methods often depend on exact keyword matching and predefined rules, which may overlook qualified candidates whose experience is described using synonyms, alternative terminology, or different sentence structures. These limitations can also cause systems to prioritize frequently repeated keywords rather than the actual relevance of a candidate's skills and experience.
 
-### 1.1 Background and Motivation
-The global job market receives millions of candidate applications daily. Corporate job openings attract an average of 250 resumes per posting, with large enterprises receiving thousands. Manual review of this volume is practically impossible, making Applicant Tracking Systems (ATS) an indispensable component of modern talent acquisition.
+To overcome these challenges, ResumeMind proposes a deep learning-based approach that combines Natural Language Processing (NLP) with transformer-based language representations. The system processes resumes and job descriptions to understand their textual content and identify relationships between candidate qualifications and employer requirements. A pretrained BERT-based sentence-transformer generates contextual embeddings, which are compared using cosine similarity to estimate semantic relevance. This approach enables the system to identify potentially related professional experiences even when the wording differs between the resume and the job description.
 
-However, existing automated screening systems are widely criticized by candidates and hiring managers alike. The vast majority of legacy ATS engines rely upon literal string matching, TF-IDF (Term Frequency-Inverse Document Frequency), or simplistic Boolean query filters. As a result, qualified candidates whose resumes express equivalent qualifications using alternate synonyms or phrasing are routinely rejected, creating high false-negative rates and exacerbating talent shortages.
+In addition to semantic analysis, ResumeMind incorporates a technical skill extraction component that identifies relevant competencies from both documents. The extracted skills are compared to determine matching and potentially missing requirements. These results are combined with semantic similarity through a weighted scoring mechanism to produce an interpretable compatibility score. The system can also rank multiple job opportunities according to their estimated relevance and provide skill-gap information to help candidates understand where their profiles may require improvement.
 
-Advancements in Deep Learning (DL) and Natural Language Processing (NLP)—specifically the development of self-attention mechanisms and transformer-based language models such as BERT (Bidirectional Encoder Representations from Transformers)—offer a compelling paradigm shift. By projecting entire documents into continuous, dense vector spaces where semantically analogous phrases cluster closely together, deep neural networks can evaluate candidate experience based on semantic intent rather than mechanical keyword repetition.
-
-### 1.2 Problem Statement
-Traditional ATS platforms suffer from four fundamental limitations:
-1. **Keyword Rigidity & Synonym Blindness:** Lexical matchers penalize candidates who use valid alternative phrasing (e.g., "Deep Neural Networks" vs. "Deep Learning", or "AWS cloud infrastructure" vs. "Amazon Web Services").
-2. **Contextual Ignorance:** Frequency-based methods fail to differentiate between core competency and incidental mention, ignoring syntactic structure, recency, and experience depth.
-3. **Black-Box Rejections Without Actionable Diagnostics:** Candidates receive opaque rejection notices without granular explanations of missing skills or actionable guidance for career development.
-4. **Disjointed Job Matching:** Candidates must manually scour hundreds of job postings without an automated mechanism to rank openings based on holistic profile fit.
-
-### 1.3 Project Objectives
-The primary objectives of the **Smart ATS Checker** academic project are:
-- To formulate and construct a deep learning-based resume-to-job matching architecture utilizing pretrained bidirectional transformer models.
-- To mathematically derive, implement, and benchmark an attention-weighted mean pooling mechanism that converts variable-length token representations into fixed-size document embeddings.
-- To design a hybrid scoring engine that balances dense latent semantic similarity (60%) with transparent, rule-based technical competency verification (40%).
-- To implement an automated skill gap detection module that categorizes candidate competencies into "Matched Skills" and "Skills to Improve".
-- To build a catalog-wide recommendation system that evaluates candidate resumes against multiple job openings and outputs ranked recommendations.
-- To develop an intuitive, accessible web dashboard and batch CLI tool for academic demonstration and empirical validation.
-
-### 1.4 Scope and Deliverables
-The project deliverables comprise:
-1. Complete, modular Python codebase with PyTorch and Hugging Face Transformers integration.
-2. An interactive Streamlit web dashboard with real-time feedback and dark-mode visualization.
-3. A scriptable command-line interface for automated resume evaluation.
-4. Interactive Jupyter research notebooks documenting dataset exploration, preprocessing, deep learning embeddings, and matching algorithms.
-5. Benchmark sample datasets containing technical candidate resumes and target job specifications.
-6. Automated unit and regression test suite.
-7. Comprehensive academic project documentation and research report.
+The main contributions of this work include contextual document representation using transformer embeddings, attention-mask-aware mean pooling, hybrid semantic and skill-based scoring, and automated skill-gap analysis. The proposed framework aims to provide a more informative alternative to purely keyword-based resume screening. Its effectiveness can be assessed by comparing it with conventional matching techniques using appropriate evaluation metrics and representative resume–job datasets. The resulting system is intended to support recruitment analysis and career planning rather than replace human judgment in hiring decisions.
 
 ---
 
-## 2. Literature Review & Theoretical Foundations
+### II. LITERATURE REVIEW
+Traditional information retrieval techniques, such as Term Frequency–Inverse Document Frequency (TF-IDF), measure document relevance using the frequency and importance of individual words. Although these methods are computationally efficient, they have limited ability to recognize semantic relationships between different expressions. Word2Vec and GloVe improved text representation by mapping words into dense vector spaces, while Doc2Vec extended distributed representations to entire documents. However, these approaches cannot dynamically capture contextual meaning in the same way as modern transformer-based language models. Consequently, resumes describing relevant skills using alternative terminology may receive lower matching scores when compared with job descriptions that use different vocabulary.
 
-### 2.1 Evolution of Resume Screening Systems
-Resume screening systems have evolved through three distinct eras:
+The Transformer architecture introduced self-attention mechanisms that enable models to learn relationships between words based on their surrounding context. BERT uses bidirectional contextual representations, while Sentence-BERT generates fixed-dimensional embeddings that can be efficiently compared using cosine similarity. These capabilities make transformer-based models suitable for identifying semantic relationships between resumes and job requirements. ResumeMind builds on this approach by combining contextual document embeddings with explicit technical skill matching. The semantic component estimates the overall relevance between documents, while a predefined skill taxonomy identifies matching and potentially missing competencies. This hybrid strategy aims to reduce the limitations of purely keyword-based screening and provide more interpretable compatibility estimates. Its effectiveness must be evaluated against traditional methods using representative datasets and appropriate performance metrics.
 
-1. **Rule-Based & Boolean Filtering (1990s–2000s):** Early ATS scanned plain text for mandatory keywords using Boolean queries (`Python AND SQL NOT Java`). While computationally trivial, these systems were completely brittle and easily manipulated through "keyword stuffing".
-2. **Statistical Bag-of-Words & Vector Space Models (2010s):** Systems introduced TF-IDF and Latent Semantic Analysis (LSA). While able to weight terms by corpus rarity, they ignored word order, polysemy, and grammatical context.
-3. **Deep Contextual Neural Embeddings (2018–Present):** Neural language models generate dense, contextual representations where word and document vectors capture rich semantic, syntactic, and functional relationships.
+#### TABLE I. SUMMARY OF RELATED METHODS
 
-### 2.2 Lexical vs. Dense Vector Representations
-Lexical representations represent documents as sparse, orthogonal vectors in a vocabulary space $\mathbb{R}^{|V|}$, where $|V|$ frequently exceeds $50,000$. Two sentences with zero shared words have an inner product of zero, regardless of semantic equivalence.
-
-In contrast, dense vector spaces map documents to continuous embeddings $\mathbb{R}^d$ ($d \ll |V|$, typically $d=768$). Semantic relatedness is measured by vector orientation rather than lexical intersection:
-
-$$\text{Sim}(\mathbf{u}, \mathbf{v}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|_2 \|\mathbf{v}\|_2}$$
-
-### 2.3 Distributed Paragraph Vectors (Doc2Vec)
-Le and Mikolov (2014) introduced Doc2Vec (Distributed Memory and Distributed Bag-of-Words), extending Word2Vec to arbitrary-length documents by training an additional document token vector concurrently with word vectors. While Doc2Vec produces dense document representations without manual feature engineering, it lacks bidirectional attention and cannot dynamically weigh critical clauses against padding.
-
-### 2.4 Bidirectional Encoder Representations from Transformers (BERT)
-Introduced by Devlin et al. (2018), BERT revolutionized NLP by employing multi-head bidirectional self-attention to condition token representations on both left and right context simultaneously across all transformer layers. Pretrained on massive corpora via Masked Language Modeling (MLM) and Next Sentence Prediction (NSP), BERT captures nuanced syntactic and semantic dependencies.
-
-### 2.5 Sentence Transformers and Pooling Formulations
-Standard BERT outputs token-level hidden states. Using the `[CLS]` token directly for sentence similarity yields poor performance because `[CLS]` is biased toward classification objectives. Reimers and Gurevych (2019) demonstrated that **Sentence-BERT (SBERT)**, trained with siamese network structures on Natural Language Inference (NLI) datasets, produces sentence embeddings where cosine similarity accurately reflects semantic relatedness. When applied with attention-weighted mean pooling, SBERT models achieve state-of-the-art sentence and document embedding quality.
+| Method | Strength | Limitation |
+| :--- | :--- | :--- |
+| **TF-IDF / vector-space model** | Lightweight and easy to index | Weak synonym and context handling |
+| **Word2Vec / GloVe** | Dense word-level representations | Static representations; limited document context |
+| **Doc2Vec** | Document-level vectors | Less contextual than transformer encoders |
+| **BERT** | Context-sensitive token representations | Direct pairwise cross-encoding can be costly |
+| **Sentence-BERT** | Efficient semantic comparison | May need domain adaptation for recruitment |
+| **ResumeMind hybrid** | **Semantic similarity plus explicit skill overlap** | Taxonomy coverage and sequence length remain limitations |
 
 ---
 
-## 3. System Architecture & Methodology
+### III. METHODOLOGY
 
-### 3.1 High-Level Architecture
-The system follows a modular four-tier architecture:
+#### A. Document ingestion and preprocessing
+The system accepts resume text or PDF documents and a target job description. Text is extracted using a PDF parsing library, normalized using Unicode normalization, and cleaned to standardize whitespace and remove non-printable artifacts. The cleaned text is passed to the tokenizer, which converts it into WordPiece tokens and applies a maximum sequence length of 512 tokens for the encoder configuration described in the supplied draft.
+
+#### B. Transformer representations and pooling
+The pretrained `sentence-transformers/bert-base-nli-mean-tokens` encoder produces a contextual hidden-state vector for each token. Let $H = [h_1, h_2, \dots, h_n]$ be the hidden states and $m_i$ be the attention-mask value for token $i$. The document vector is calculated by masked mean pooling:
+
+$$u = \frac{\sum_i h_i m_i}{\max(\epsilon, \sum_i m_i)} \quad (1)$$
+
+where $\epsilon$ is a small numerical constant that prevents division by zero. The mask excludes padding tokens from the pooled representation. The same procedure is applied to the job description to obtain vector $v$.
+
+#### C. Semantic similarity
+The semantic score is the cosine similarity between resume vector $u$ and job vector $v$, scaled to a percentage:
+
+$$S_{\text{semantic}} = 100 \times \frac{u \cdot v}{\|u\|_2 \|v\|_2} \quad (2)$$
+
+#### D. Technical skill extraction
+A curated taxonomy $T$ contains technical terms such as programming languages, ML frameworks, cloud tools, and databases. Compiled regular expressions use word boundaries and escaped terms to reduce partial-substring matches. Let $R$ be the skills detected in the resume and $J$ the skills identified in the job description. Skill coverage is:
+
+$$S_{\text{skill}} = 100 \times \frac{|R \cap J|}{|J|}, \quad \text{when } |J| > 0; \quad \text{otherwise } 0. \quad (3)$$
+
+The matched-skill set is $R \cap J$, and the missing-skill set is $J \setminus R$. This component is transparent but limited by the completeness of the taxonomy and does not by itself verify proficiency.
+
+#### E. Hybrid scoring and ranking
+The final compatibility score is a convex combination of semantic proximity and explicit skill coverage:
+
+$$S_{\text{final}} = 0.60 \times S_{\text{semantic}} + 0.40 \times S_{\text{skill}} \quad (4)$$
+
+The system computes this score for each job in the available catalogue and sorts jobs in descending order. Scores should be treated as estimated compatibility measures, not as predictions of an employer's actual hiring decision.
+
+#### F. System architecture
 
 ```text
 ┌────────────────────────────────────────────────────────┐
-│                   Presentation Layer                   │
-│   Streamlit Web Interface  |  Command-Line Interface   │
+│                    INPUT DOCUMENTS                     │
+│           Resume (PDF / text)  +  Job description      │
 └───────────────────────────┬────────────────────────────┘
                             │
 ┌───────────────────────────▼────────────────────────────┐
-│                    Processing Tier                     │
-│   Document Parser (PDF/TXT)  |  Regex Skill Extractor  │
+│                     PREPROCESSING                      │
+│     Text extraction • Unicode normalization • Tokenization│
+└─────────────┬───────────────────────────┬──────────────┘
+              │                           │
+┌─────────────▼───────────────┐ ┌─────────▼──────────────┐
+│     NLP SKILL EXTRACTION    │ │   TRANSFORMER ENCODER  │
+│  Boundary-aware taxonomy    │ │ BERT token states +    │
+│                             │ │ masked mean pooling    │
+└─────────────┬───────────────┘ └─────────┬──────────────┘
+              │                           │
+              └─────────────┬─────────────┘
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│                 HYBRID MATCHING ENGINE                 │
+│         0.60 * semantic similarity + 0.40 * skill overlap│
 └───────────────────────────┬────────────────────────────┘
                             │
-┌───────────────────────────▼────────────────────────────┐
-│                 Deep Learning Modeling                 │
-│   HuggingFace BERT  |  Attention-Weighted Mean Pool    │
-│   Cosine Similarity |  Doc2Vec Baseline Engine         │
-└───────────────────────────┬────────────────────────────┘
-                            │
-┌───────────────────────────▼────────────────────────────┐
-│              Scoring & Recommendation Tier             │
-│   Hybrid Scorer (0.60 Semantic + 0.40 Skill)           │
-│   Skill Gap Categorization  |  Catalog Ranker          │
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│                         OUTPUT                         │
+│   Match score • matched/missing skills • ranked jobs   │
 └────────────────────────────────────────────────────────┘
 ```
-
-### 3.2 Document Ingestion and Preprocessing
-The ingestion module (`src/resume_parser.py`) processes candidate resumes in PDF format or plaintext files. PDF extraction is implemented using `pdfplumber`, which preserves text coordinates and structure across multi-page documents. Extracted text is sanitized to remove non-printable characters and normalized for model tokenization.
-
-### 3.3 Technical Competency Extraction Engine
-The competency extraction module (`src/skill_extractor.py`) manages a curated taxonomy of 45+ technical competencies categorized into:
-- Programming Languages (`Python`, `Java`, `C++`, `SQL`, `Rust`, `Go`, etc.)
-- Web & Backend Frameworks (`React`, `Django`, `Flask`, `Node.js`, `FastAPI`, etc.)
-- Databases & Storage (`PostgreSQL`, `MongoDB`, `Redis`, `MySQL`, etc.)
-- Machine Learning & Deep Learning (`PyTorch`, `TensorFlow`, `Scikit-learn`, `Keras`, `Pandas`, `NumPy`, `Computer Vision`, `NLP`, etc.)
-- DevOps & Cloud (`AWS`, `Docker`, `Kubernetes`, `Git`, `Linux`, `GCP`, etc.)
-
-To prevent substring false-positives (e.g., matching "C" inside "React" or "SQL" inside "NoSQL"), compiled regular expressions enforce word boundaries:
-```python
-pattern = r"\b" + re.escape(skill) + r"\b"
-```
-
-### 3.4 Deep Transformer Vectorization Pipeline
-The core deep learning module (`src/models.py`) utilizes the `sentence-transformers/bert-base-nli-mean-tokens` architecture:
-1. **Tokenization:** Text is tokenized into WordPiece sub-tokens, capped at 512 tokens with sequence truncation and zero-padding.
-2. **Attention Mask Generation:** A binary mask $m \in \{0, 1\}^{512}$ marks valid tokens ($1$) versus padding tokens ($0$).
-3. **Forward Pass:** The PyTorch transformer model computes contextual token states $\mathbf{H} \in \mathbb{R}^{B \times L \times 768}$, where $B$ is batch size and $L$ is sequence length.
-
-### 3.5 Attention-Weighted Mean Pooling
-To aggregate token states into a single document vector without skewing from padding, attention-weighted mean pooling performs element-wise multiplication by the expanded attention mask, computes the tensor sum along the sequence dimension, and divides by the sum of valid tokens:
-
-$$\mathbf{u} = \frac{\sum_{i=1}^N \mathbf{h}_i \cdot m_i}{\max\left(10^{-9}, \sum_{i=1}^N m_i\right)}$$
-
-### 3.6 Semantic Similarity Calculation
-Cosine similarity between the normalized document vectors $\mathbf{u}$ (resume) and $\mathbf{v}$ (job description) measures the cosine of their angle:
-
-$$\text{Sim}_{\text{semantic}}(\mathbf{u}, \mathbf{v}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|_2 \|\mathbf{v}\|_2}$$
-
-The raw similarity $\in [-1, 1]$ is scaled to $[0, 100]$:
-$$\text{Semantic Score} = \max\left(0.0, \min\left(100.0, \text{Sim}_{\text{semantic}} \times 100\right)\right)$$
-
-### 3.7 Hybrid Compatibility Formulation
-To ensure both conceptual alignment and hard skill fulfillment, the composite Compatibility Score is defined as:
-
-$$\text{Final Score} = (\alpha \times \text{Semantic Score}) + (\beta \times \text{Skill Score})$$
-
-with default weights:
-$$\alpha = 0.60, \quad \beta = 0.40, \quad \alpha + \beta = 1.0$$
-
-### 3.8 Job Recommendation & Candidate Ranking
-The recommendation module (`src/job_recommender.py`) ingests the job catalog (`data/jobs.csv`), evaluates the candidate resume against every catalog entry, sorts results in descending order of compatibility score, and generates structured fit profiles with matched and missing competencies.
+*Fig. 1. ResumeMind system architecture, showing document ingestion, parallel skill extraction and transformer encoding, hybrid scoring, and outputs.*
 
 ---
 
-## 4. Mathematical Modeling & Formulations
+### IV. RESULTS AND DISCUSSION
 
-### 4.1 Transformer Self-Attention Mechanism
-BERT's self-attention layers project an input token matrix $\mathbf{X}$ into Query ($\mathbf{Q}$), Key ($\mathbf{K}$), and Value ($\mathbf{V}$) matrices using learned projection weights:
+#### A. Evaluation setup
+The supplied draft describes three illustrative candidate profiles: a machine-learning engineer, a data analyst, and a full-stack developer. The target requisition is a machine-learning engineer role requiring PyTorch, Transformers, deep learning, SQL, and Docker. The values below are transcribed from the supplied draft and are included to organize the proposed results section. They are not independently reproduced or verified in this document.
 
-$$\mathbf{Q} = \mathbf{X} \mathbf{W}_Q, \quad \mathbf{K} = \mathbf{X} \mathbf{W}_K, \quad \mathbf{V} = \mathbf{X} \mathbf{W}_V$$
+#### TABLE II. PERFORMANCE VALUES REPORTED IN THE SUPPLIED DRAFT
 
-The Scaled Dot-Product Attention is computed as:
-
-$$\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left(\frac{\mathbf{Q} \mathbf{K}^T}{\sqrt{d_k}}\right) \mathbf{V}$$
-
-where $d_k = 64$ is the dimension of individual attention heads.
-
-### 4.2 Attention-Weighted Mean Pooling Derivation
-Let $\mathbf{H} = [\mathbf{h}_1, \mathbf{h}_2, \dots, \mathbf{h}_L]^T \in \mathbb{R}^{L \times d}$ be the output representations from the final hidden layer of BERT, and let $\mathbf{m} = [m_1, m_2, \dots, m_L]^T \in \{0, 1\}^L$ be the binary attention mask.
-
-The pooled vector $\mathbf{u} \in \mathbb{R}^d$ is:
-
-$$\mathbf{u} = \left( \sum_{i=1}^L m_i \right)^{-1} \sum_{i=1}^L m_i \mathbf{h}_i$$
-
-To prevent division by zero in degenerate empty-sequence edge cases, a smoothing constant $\epsilon = 10^{-9}$ is clamped:
-
-$$\mathbf{u} = \frac{\sum_{i=1}^L m_i \mathbf{h}_i}{\max\left(\epsilon, \sum_{i=1}^L m_i\right)}$$
-
-### 4.3 Cosine Distance in $\mathbb{R}^{768}$
-For two 768-dimensional document vectors $\mathbf{u}, \mathbf{v} \in \mathbb{R}^{768}$, cosine similarity is the inner product of their $\ell_2$-normalized vectors:
-
-$$\hat{\mathbf{u}} = \frac{\mathbf{u}}{\|\mathbf{u}\|_2}, \quad \hat{\mathbf{v}} = \frac{\mathbf{v}}{\|\mathbf{v}\|_2}$$
-
-$$\text{Sim}(\mathbf{u}, \mathbf{v}) = \hat{\mathbf{u}}^T \hat{\mathbf{v}} = \sum_{k=1}^{768} \hat{u}_k \hat{v}_k$$
-
-### 4.4 Set-Theoretic Skill Overlap Metric
-Let $\mathcal{R}$ denote the set of technical skills extracted from the candidate resume, and let $\mathcal{J}$ denote the set of technical skills extracted from the job description:
-
-$$\text{Skill Score} = \begin{cases} \left( \frac{|\mathcal{R} \cap \mathcal{J}|}{|\mathcal{J}|} \right) \times 100, & \text{if } |\mathcal{J}| > 0 \\ 0.0, & \text{if } |\mathcal{J}| = 0 \end{cases}$$
-
-The symmetric difference and missing skills set are given by:
-$$\mathcal{S}_{\text{matched}} = \mathcal{R} \cap \mathcal{J}$$
-$$\mathcal{S}_{\text{missing}} = \mathcal{J} \setminus \mathcal{R}$$
-
-### 4.5 Composite Linear Convex Combination
-The final matching score is bounded within $[0, 100]$:
-
-$$S_{\text{final}} = \alpha \cdot S_{\text{semantic}} + \beta \cdot S_{\text{skill}}$$
-$$\text{subject to } \alpha \ge 0, \; \beta \ge 0, \; \alpha + \beta = 1.0$$
-
-The empirical selection of $\alpha = 0.60$ and $\beta = 0.40$ ensures that semantic context dominates overall alignment while hard technical requirements prevent unqualified candidates from scoring highly.
-
----
-
-## 5. Implementation Details & Software Architecture
-
-### 5.1 Software Stack & Environment
-- **Programming Language:** Python 3.10 / 3.11 / 3.12 / 3.13
-- **Deep Learning Framework:** PyTorch 2.0+
-- **Transformer Toolkit:** Hugging Face `transformers`
-- **Text Preprocessing:** `nltk`, `pdfplumber`
-- **Baseline Models:** `gensim` (Doc2Vec)
-- **Machine Learning & Metrics:** `scikit-learn`, `numpy`, `pandas`
-- **User Interface:** Streamlit 1.30+
-- **Automated Testing:** Python `unittest` framework
-
-### 5.2 Deep Learning Pipeline Implementation
-The model loading pipeline is encapsulated in `src/models.py`:
-```python
-@st.cache_resource(show_spinner=False)
-def load_bert_model_and_tokenizer(
-    model_name: str = "sentence-transformers/bert-base-nli-mean-tokens"
-):
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModel.from_pretrained(model_name)
-    model.eval()
-    return tokenizer, model
-```
-Inference is executed under `torch.no_grad()` to eliminate gradient computation overhead, ensuring sub-second inference latency on standard CPUs.
-
-### 5.3 Web Application Interface
-The Streamlit application (`app.py`) provides an interactive interface featuring:
-- **Tab 1: Home:** Hero banner, system architecture overview, and feature highlights.
-- **Tab 2: Results:** Document uploaders, real-time compatibility gauge, breakdown cards for Semantic Score and Skill Match, and color-coded skill chips (Green for Matched, Red for Skills to Improve).
-- **Tab 3: Job Recommendations:** Dynamic catalog matching displaying top ranked job matches from `data/jobs.csv`.
-
-### 5.4 Command-Line Interface (CLI) Execution
-For automated pipeline integration, `app.py` accepts direct command-line arguments:
-```bash
-python app.py path/to/resume.pdf path/to/job_description.txt
-```
-The script outputs structured JSON matching diagnostics directly to standard output.
-
-### 5.5 Resource Caching and Performance Optimization
-To prevent reloading 420MB model checkpoints across multiple requests, the system utilizes Streamlit's `@st.cache_resource` decorator. The transformer weights remain memory-resident throughout the application lifecycle.
-
----
-
-## 6. Experimental Evaluation & Results
-
-### 6.1 Evaluation Methodology & Datasets
-Evaluation was performed using the benchmark sample profiles in `data/sample_resumes/` tested against target job descriptions in `data/sample_jobs/`:
-- **Resume A:** Machine Learning Engineer (PyTorch, TensorFlow, NLP, Scikit-learn, SQL, Docker)
-- **Resume B:** Data Analyst (Python, SQL, Excel, Power BI, Statistics, Pandas)
-- **Resume C:** Fullstack Developer (React, Node.js, JavaScript, Python, Django, Docker)
-- **Target Role:** Machine Learning Engineer Job Description
-
-### 6.2 Comparative Model Performance
-Three screening paradigms were benchmarked on Resume A against the Machine Learning Engineer target job:
-
-| Screening Architecture | Semantic Score | Skill Overlap Score | Final Compatibility Score | Latency (CPU) |
+| Model | Semantic proximity | Skill match | Composite score | CPU latency |
 | :--- | :---: | :---: | :---: | :---: |
-| **Keyword-Only ATS** | 28.5% | 75.0% | 47.1% | **< 5 ms** |
-| **Gensim Doc2Vec Baseline** | 64.2% | 75.0% | 68.5% | ~ 45 ms |
-| **Smart ATS (BERT + Pooling)** | **87.4%** | **75.0%** | **82.4%** | **~ 210 ms** |
+| **Traditional keyword ATS** | 28.5% | 75.0% | 47.1% | < 5 ms |
+| **Doc2Vec** | 64.2% | 75.0% | 68.5% | ≈ 45 ms |
+| **ResumeMind (BERT + pooling)** | **87.4%** | **75.0%** | **82.4%** | **≈ 210 ms** |
 
-### 6.3 Semantic Robustness & Synonym Matching Tests
-To verify deep contextual understanding, resumes were tested with intentionally substituted technical synonyms (e.g., using "Deep Neural Architectures" in place of "Deep Learning", and "Natural Language Understanding" in place of "NLP"):
-- **Keyword-Only ATS:** Compatibility dropped by **38.2%** due to exact string mismatch.
-- **Smart ATS (BERT):** Compatibility changed by only **1.8%**, confirming robust semantic invariance across synonymous terminology.
+*Fig. 2. Comparison of reported semantic proximity and composite compatibility values. Validate against a reproducible test set before submission.*
 
-### 6.4 Skill Gap Diagnostic Verification
-For Resume A evaluated against the Machine Learning Engineer job description:
-- **Detected Skills:** `python`, `sql`, `pytorch`, `tensorflow`, `hugging face`, `scikit-learn`, `machine learning`, `nlp`, `docker`, `git`.
-- **Matched Skills ($\mathcal{R} \cap \mathcal{J}$):** `python`, `pytorch`, `tensorflow`, `machine learning`, `nlp`, `scikit-learn`, `sql`, `git`, `docker`.
-- **Skills to Improve ($\mathcal{J} \setminus \mathcal{R}$):** Accurately flagged missing requirements without generating false positives.
+#### B. Candidate-to-job observations
 
----
+#### TABLE III. CANDIDATE-ROLE SCORES REPORTED IN THE SUPPLIED DRAFT
 
-## 7. Limitations & Future Research
+| Candidate profile | Target role | Semantic | Skill | Final | Draft interpretation |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| **Profile A: ML Engineer** | ML Engineer | 87.4% | 75.0% | 82.4% | Strong match |
+| **Profile A: ML Engineer** | Data Analyst | 68.1% | 55.6% | 63.1% | Moderate fit; check BI skills |
+| **Profile B: Data Analyst** | Data Analyst | 84.6% | 88.9% | 86.3% | Strong competency overlap |
+| **Profile C: Full-stack Developer** | ML Engineer | 39.2% | 25.0% | 33.5% | Low overlap with ML requirements |
 
-### 7.1 Input Sequence Length Limitations
-The standard BERT architecture imposes an upper bound of 512 input tokens. Highly verbose multi-page CVs are truncated beyond this threshold. Future work will investigate Longformer or BigBird architectures capable of processing up to 4,096 tokens.
+#### C. Vocabulary variation
+The robustness of ResumeMind can be evaluated by examining how synonym substitutions affect resume–job compatibility scores. Traditional keyword-based systems may produce lower scores when candidates describe the same skills using different terms, whereas transformer-based models can capture contextual relationships between words and phrases. The supplied draft reports a score change of 38.2% for the keyword-based ATS and 1.8% for ResumeMind, suggesting improved resistance to terminology variations. However, these results require validation through controlled experiments using a clearly defined set of synonym substitutions and representative test examples. Comparing score changes and job-ranking consistency under identical conditions would help determine whether ResumeMind maintains reliable matching performance when the wording of resumes or job descriptions changes without altering their intended meaning.
 
-### 7.2 Open-Vocabulary Skill Recognition (NER)
-The current skill extraction engine utilizes a 45+ taxonomy. While comprehensive for standard tech stacks, emerging tools and proprietary frameworks may escape detection. Future research will explore fine-tuning a domain-specific Named Entity Recognition (NER) model (e.g., BERT-CRF or RoBERTa-NER) for zero-shot skill boundary detection.
+*Fig. 3. Reported score change under synonym substitution (values from the supplied draft).*
 
-### 7.3 Generative Feedback & Resume Optimization
-Future system extensions will integrate Large Language Models (LLMs) to automatically generate personalized bullet-point rewriting suggestions to help candidates articulate their achievements more effectively.
+#### D. Discussion and limitations
+The hybrid design of ResumeMind combines contextual semantic similarity with explicit technical skill coverage. A purely semantic approach may overrate generally relevant text, while a purely keyword-based approach may miss synonyms and contextual relationships. The selected weighting should therefore be optimized using labeled validation data. Other limitations include the 512-token sequence limit, incomplete skill taxonomies, variations in resume formatting, and potential biases in pretrained models. A practical system should provide evidence for detected and missing skills and avoid making hiring decisions autonomously.
 
-### 7.4 Cross-Lingual Evaluation
-Integrating multilingual transformer backbones (such as `sentence-transformers/paraphrase-multilingual-mpnet-base-v2`) will enable automated screening across international and multilingual applications.
+Before claiming model superiority, ResumeMind should be evaluated using documented datasets, consistent baselines, fixed data splits, and repeated experiments. Suitable metrics, such as precision, recall, F1-score, and ranking measures, can help assess matching performance. Robustness testing should examine the effects of terminology and formatting changes. Latency comparisons should also specify hardware, batch size, model-loading time, and warm-up procedures to ensure reproducible and reliable results.
 
 ---
 
-## 8. Conclusion
-
-This academic project presented **Smart ATS Checker: Resume-to-Job Matching System**, an intelligent resume screening and career recommendation platform founded upon modern deep learning and natural language processing principles.
-
-By combining bidirectional BERT sentence embeddings, attention-weighted mean pooling, cosine semantic similarity, and granular word-boundary skill extraction, the system successfully addresses the rigid keyword limitations of legacy ATS engines. The hybrid scoring formulation ($0.60 \times \text{Semantic} + 0.40 \times \text{Skill}$) provides an objective, explainable, and balanced evaluation that rewards both conceptual depth and hard prerequisite fulfillment.
-
-The complete open-architecture implementation—comprising an interactive Streamlit application, batch CLI tool, educational research notebooks, benchmark sample datasets, and automated unit test suite—serves as a robust foundation for academic demonstration, evaluation, and future research in intelligent information retrieval and talent technology.
+### V. CONCLUSION AND FUTURE WORK
+ResumeMind proposes a hybrid deep learning framework for resume-to-job matching by integrating BERT-based contextual document embeddings with explicit technical skill matching. The system aims to overcome the limitations of traditional keyword-based screening by identifying semantic relationships between resumes and job descriptions while highlighting relevant and missing skills. It generates compatibility scores and ranked job recommendations to help candidates identify suitable employment opportunities and understand areas where their skills may not meet job requirements. Future work will focus on fine-tuning token-classification models for more flexible skill extraction, exploring long-document transformer architectures to process lengthy resumes, and evaluating performance using larger, annotated resume–job datasets. Additional improvements may include score calibration to make compatibility estimates more interpretable and reliable, along with carefully constrained career-writing assistance to help candidates improve resume clarity and relevance without introducing inaccurate information.
 
 ---
 
-## 9. References
+### REFERENCES
+[1] J. Devlin, M. W. Chang, K. Lee, and K. Toutanova, "BERT: Pre-training of deep bidirectional transformers for language understanding," in *Proc. NAACL-HLT*, 2019, pp. 4171–4186.  
+[2] N. Reimers and I. Gurevych, "Sentence-BERT: Sentence embeddings using siamese BERT-networks," in *Proc. EMNLP-IJCNLP*, 2019, pp. 3982–3992.  
+[3] A. Vaswani et al., "Attention is all you need," in *Advances in Neural Information Processing Systems*, vol. 30, 2017.  
+[4] Q. Le and T. Mikolov, "Distributed representations of sentences and documents," in *Proc. ICML*, 2014, pp. 1188–1196.  
+[5] T. Mikolov et al., "Efficient estimation of word representations in vector space," in *Proc. ICLR Workshop*, 2013.  
+[6] G. Salton and C. Buckley, "Term-weighting approaches in automatic text retrieval," *Information Processing & Management*, vol. 24, no. 5, pp. 513–523, 1988.  
+[7] T. Wolf et al., "Transformers: State-of-the-art natural language processing," in *Proc. EMNLP: System Demonstrations*, 2020, pp. 38–45.  
+[8] A. Paszke et al., "PyTorch: An imperative style, high-performance deep learning library," in *Advances in Neural Information Processing Systems*, vol. 32, 2019.  
+[9] F. Pedregosa et al., "Scikit-learn: Machine learning in Python," *Journal of Machine Learning Research*, vol. 12, pp. 2825–2830, 2011.  
+[10] S. Bird, E. Klein, and E. Loper, *Natural Language Processing with Python*. Sebastopol, CA: O'Reilly Media, 2009.  
+[11] J. Pennington, R. Socher, and C. D. Manning, "GloVe: Global vectors for word representation," in *Proc. EMNLP*, 2014, pp. 1532–1543.  
+[12] M. E. Peters et al., "Deep contextualized word representations," in *Proc. NAACL-HLT*, 2018, pp. 2227–2237.  
+[13] Y. Liu et al., "RoBERTa: A robustly optimized BERT pretraining approach," *arXiv:1907.11692*, 2019.  
+[14] Z. Beltagy, M. E. Peters, and A. Cohan, "Longformer: The long-document transformer," *arXiv:2004.05150*, 2020.  
+[15] S. Minaee et al., "Deep learning-based text classification: A comprehensive review," *ACM Computing Surveys*, vol. 54, no. 3, 2021.  
+[16] Z. Lan et al., "ALBERT: A lite BERT for self-supervised learning of language representations," in *Proc. ICLR*, 2020.  
+[17] F. Bojanowski et al., "Enriching word vectors with subword information," *Transactions of the Association for Computational Linguistics*, vol. 5, 2017.  
+[18] Z. Dai et al., "Transformer-XL: Attentive language models beyond a fixed-length context," in *Proc. ACL*, 2019.  
+[19] Y. Goldberg, *Neural Network Methods for Natural Language Processing*. Morgan & Claypool, 2017.  
+[20] D. Jurafsky and J. H. Martin, *Speech and Language Processing*, 3rd ed. draft, 2023.  
+[21] K. S. Kalyan, A. Rajasekharan, and S. Sangeetha, "AMMUS: A survey of transformer-based pretrained models in NLP," *IEEE Transactions on Neural Networks and Learning Systems*, vol. 35, no. 7, 2024.  
+[22] A. Roy et al., "Automated resume screening using natural language processing and machine learning," in *Proc. IEEE ICCSP*, 2020, pp. 450–454.  
+[23] S. Guo, F. Alamudun, and T. Hammond, "RésuMatcher: A personalized résumé-job matching system," *Expert Systems with Applications*, vol. 60, pp. 169–182, 2016. doi: 10.1016/j.eswa.2016.04.013.  
+[24] A. Conneau et al., "Supervised learning of universal sentence representations from natural language inference data," in *Proc. EMNLP*, 2017, pp. 670–680.  
+[25] "An Advanced Real-Time Job Recommendation System and Resume Analyser," in *Proc. International Conference on Self Sustainable Artificial Intelligence Systems (ICSSAS)*, 2023. doi: 10.1109/ICSSAS57918.2023.10331788.  
 
-1. Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2018). *BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding*. arXiv preprint arXiv:1810.04805.
-2. Reimers, N., & Gurevych, I. (2019). *Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks*. In Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP-IJCNLP), pp. 3982–3992.
-3. Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2017). *Attention Is All You Need*. Advances in Neural Information Processing Systems (NeurIPS 2017), 30, pp. 5998–6008.
-4. Le, Q., & Mikolov, T. (2014). *Distributed Representations of Sentences and Documents*. International Conference on Machine Learning (ICML 2014), pp. 1188–1196.
-5. Mikolov, T., Chen, K., Corrado, G., & Dean, J. (2013). *Efficient Estimation of Word Representations in Vector Space*. arXiv preprint arXiv:1301.3781.
-6. Salton, G., & Buckley, C. (1988). *Term-weighting approaches in automatic text retrieval*. Information Processing & Management, 24(5), 513–523.
-7. Wolf, T., Debut, L., Sanh, V., Chaumond, J., Delangue, C., Moi, A., Cistac, P., et al. (2020). *Transformers: State-of-the-Art Natural Language Processing*. In Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations, pp. 38–45.
-8. Paszke, A., Gross, S., Massa, F., Lerer, A., Bradbury, J., Chanan, G., et al. (2019). *PyTorch: An Imperative Style, High-Performance Deep Learning Library*. Advances in Neural Information Processing Systems (NeurIPS 2019), 32.
-9. Bird, S., Klein, E., & Loper, E. (2009). *Natural Language Processing with Python: Analyzing Text with the Natural Language Toolkit*. O'Reilly Media, Inc.
-10. Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., et al. (2011). *Scikit-learn: Machine Learning in Python*. Journal of Machine Learning Research, 12, 2825–2830.
+---
+
+**Github Link :**  
+[https://github.com/harsha9625/ResumeMind](https://github.com/harsha9625/ResumeMind)

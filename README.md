@@ -263,11 +263,11 @@ A detailed, publication-ready Academic Project Report has been prepared for univ
 
 ## 13. Project Contributors
 
-| Name | Roll Number | Academic Role |
-| :--- | :--- | :--- |
-| **Nimmagadda Harsha Vardhan** | `2023BCS0158` | Deep Learning Modeling & System Architecture |
-| **Konda Tej Akhilesh** | `2023BCS0160` | NLP Pipeline, Document Parsing & Skill Extraction |
-| **K Sai Nihal** | `2023BCD0045` | Evaluation Framework, Recommendation Engine & UI |
+| Name | Roll Number | GitHub Profile | Academic Role & Affiliation |
+| :--- | :--- | :--- | :--- |
+| **Nimmagadda Harsha Vardhan** | `2023BCS0158` | [@harsha9625](https://github.com/harsha9625) | Deep Learning Modeling & Architecture • IIIT Kottayam (`nimmaga23bcs158@iiitkottayam.ac.in`) |
+| **Konda Tej Akhilesh** | `2023BCS0160` | [@tejakhileshkonda-ops](https://github.com/tejakhileshkonda-ops) | NLP Pipeline & Skill Extraction • IIIT Kottayam (`konda23bcs160@iiitkottayam.ac.in`) |
+| **K Sai Nihal** | `2023BCD0045` | Student Contributor | Evaluation & UI Architecture • IIIT Kottayam (`kandima23bcd45@iiitkottayam.ac.in`) |
 
 ---
 
