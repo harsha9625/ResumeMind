@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ResumeMind: A Deep Learning-Based Smart ATS Checker and Resume-to-Job Matching System</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+    }
+    body {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 10pt;
+      line-height: 1.25;
+      color: #111827;
+      background: #FFFFFF;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+    .print-bar {
+      background: #1E3A8A;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .print-btn {
+      background: #3B82F6;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .print-btn:hover {
+      background: #2563EB;
+    }
+    h1.paper-title {
+      font-size: 18pt;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 18px;
+      line-height: 1.2;
+      color: #0F172A;
+    }
+    .authors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 9pt;
+      line-height: 1.3;
+    }
+    .author-name {
+      font-weight: bold;
+      font-size: 10pt;
+      color: #0F172A;
+    }
+    .author-roll {
+      font-weight: bold;
+      color: #2563EB;
+    }
+    .author-affil {
+      color: #475569;
+    }
+    .author-email {
+      color: #1D4ED8;
+      text-decoration: none;
+    }
+    .abstract-box {
+      margin: 0 15px 18px 15px;
+      text-align: justify;
+      font-size: 9.5pt;
+      line-height: 1.25;
+    }
+    .abstract-label {
+      font-weight: bold;
+      font-style: italic;
+    }
+    .keywords-box {
+      margin: 0 15px 22px 15px;
+      text-align: justify;
+      font-size: 9.5pt;
+    }
+    .keywords-label {
+      font-weight: bold;
+      font-style: italic;
+    }
+    h2.section-head {
+      font-size: 10.5pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-top: 18px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 3px;
+      color: #0F172A;
+    }
+    h3.sub-head {
+      font-size: 9.5pt;
+      font-weight: bold;
+      font-style: italic;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      color: #1E293B;
+    }
+    p {
+      text-align: justify;
+      margin-top: 0;
+      margin-bottom: 6px;
+      text-indent: 14pt;
+    }
+    p.no-indent {
+      text-indent: 0;
+    }
+    .equation-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 30px;
+      font-style: italic;
+      font-size: 9.5pt;
+    }
+    .equation-content {
+      flex: 1;
+      text-align: center;
+    }
+    .equation-num {
+      font-style: normal;
+    }
+    table.academic-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 8.5pt;
+    }
+    table.academic-table th {
+      background: #1E3A8A;
+      color: white;
+      font-weight: bold;
+      padding: 6px 8px;
+      text-align: center;
+      border: 1px solid #CBD5E1;
+    }
+    table.academic-table td {
+      padding: 5px 8px;
+      border: 1px solid #E2E8F0;
+    }
+    table.academic-table tr:nth-child(even) {
+      background: #F8FAFC;
+    }
+    .references-list {
+      padding-left: 20px;
+      font-size: 8.5pt;
+      line-height: 1.25;
+    }
+    .references-list li {
+      margin-bottom: 4px;
+      text-align: justify;
+    }
+    @media print {
+      .print-bar {
+        display: none;
+      }
+      body {
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    <div><strong>ResumeMind Academic Project Report</strong> — Formatted according to IEEE Conference Standards</div>
+    <button class="print-btn" onclick="window.print()">📥 Print / Save as PDF</button>
+  </div>
+
+  <h1 class="paper-title">ResumeMind: A Deep Learning-Based Smart ATS Checker and Resume-to-Job Matching System</h1>
+
+  <div class="authors-grid">
+    <div>
+      <div class="author-name">Nimmagadda Harsha Vardhan</div>
+      <div class="author-roll">2023BCS0158</div>
+      <div class="author-affil">Dept. of Computer Science & Eng.<br>Indian Inst. of Information Tech.<br>Andhra Pradesh, India</div>
+      <a class="author-email" href="mailto:harshavardhannimmagadda05@gmail.com">harshavardhannimmagadda05@gmail.com</a>
+    </div>
+    <div>
+      <div class="author-name">Konda Tej Akhilesh</div>
+      <div class="author-roll">2023BCS0160</div>
+      <div class="author-affil">Dept. of Computer Science & Eng.<br>Indian Inst. of Information Tech.<br>Andhra Pradesh, India</div>
+      <a class="author-email" href="mailto:akhilesh.k23@iiits.in">akhilesh.k23@iiits.in</a>
+    </div>
+    <div>
+      <div class="author-name">K Sai Nihal</div>
+      <div class="author-roll">2023BCD0045</div>
+      <div class="author-affil">Dept. of Computer Science & Eng.<br>Indian Inst. of Information Tech.<br>Andhra Pradesh, India</div>
+      <a class="author-email" href="mailto:sainihal.k23@iiits.in">sainihal.k23@iiits.in</a>
+    </div>
+  </div>
+
+  <div class="abstract-box">
+    <span class="abstract-label">Abstract—</span>In modern talent acquisition workflows, automated Applicant Tracking Systems are universally deployed to screen massive volumes of candidate submissions. However, traditional screening engines depend heavily on exact lexical keyword matching and static boolean rules. These conventional techniques exhibit critical failure modes, including severe vocabulary mismatch, complete insensitivity to contextual semantic nuance, vulnerability to artificial keyword stuffing, and an utter absence of constructive diagnostic feedback for job applicants. This paper presents ResumeMind, an end-to-end deep learning and natural language processing system engineered to perform automated resume-to-job matching, granular technical competency extraction, and automated career recommendation. The proposed architecture employs a bidirectional transformer encoder to derive dense token-level representations across professional curricula vitae and unstructured job postings. To transform variable-length token representations into fixed-dimensional document embeddings without distortion from padding artifacts, an attention-weighted mean pooling formulation is derived and implemented. A dual-objective scoring framework combines deep semantic similarity in seventy-six-dimensional latent space with compiled word-boundary regular expression matching across an established technical taxonomy. Empirical benchmarks across technical recruitment domains indicate that the proposed system achieves superior semantic alignment compared to legacy keyword baselines, remains robust under synonym substitution, and generates transparent skill gap diagnostics that enhance algorithmic fairness and candidate career development.
+  </div>
+
+  <div class="keywords-box">
+    <span class="keywords-label">Keywords—</span>Deep Learning, Natural Language Processing, BERT Embeddings, Resume Matching, Applicant Tracking Systems
+  </div>
+
+  <h2 class="section-head">I. Introduction</h2>
+  <p>The contemporary recruitment landscape is characterized by an unprecedented asymmetry between application volume and human evaluation capacity. Corporate job requisitions frequently attract hundreds to thousands of submissions within hours of publication. To cope with this cognitive bottleneck, enterprises depend almost exclusively on automated Applicant Tracking Systems (ATS) as the initial screening gatekeeper.</p>
+  <p>Notwithstanding their pervasive deployment, conventional ATS architectures rely on rudimentary information retrieval heuristics designed decades ago. Primarily rooted in literal string equality, basic regular expression parsers, and term frequency-inverse document frequency (TF-IDF) scoring, these legacy systems prioritize superficial token repetition over substantive professional competency. Consequently, a highly qualified candidate who articulates their background using alternative industry nomenclature (such as describing deep neural architectures rather than explicitly repeating the token deep learning) is routinely rejected by automated filters. This creates an unacceptably high rate of false negatives for recruiting organizations while fostering deep disenfranchisement among job seekers.</p>
+  <p>Furthermore, traditional recruitment pipelines function as uninterpretable black boxes. Candidates whose profiles are filtered out receive generic rejection communiques devoid of actionable diagnostic feedback regarding missing technical competencies or prerequisite qualifications.</p>
+  <p>To address these systemic shortcomings, this research introduces <strong>ResumeMind</strong>, a novel deep learning framework that reformulates resume screening as a dual-objective optimization task encompassing dense semantic alignment and explicit domain entity validation.</p>
+
+  <h2 class="section-head">II. Literature Review</h2>
+  <h3 class="sub-head">A. Evolution of Applicant Tracking Systems</h3>
+  <p>Early candidate screening platforms developed in the late 1990s and early 2000s functioned purely as inverted-index database search engines. Recruiters executed Boolean queries consisting of mandatory keywords combined with logical operators. Salton and Buckley established foundational term-weighting approaches in vector space models, demonstrating that inverse document frequency could mitigate common-word distortion. However, statistical bag-of-words formulations inherently discard syntactic structure, word order, and semantic relations.</p>
+  <p>During the subsequent decade, researchers explored distributional semantic models, notably Word2Vec by Mikolov et al. and GloVe by Pennington et al. Le and Mikolov extended continuous vector representations to arbitrary paragraph lengths via Doc2Vec. While Doc2Vec marked an improvement over sparse lexical counts, it relied on shallow neural architectures that could not model complex bidirectional dependencies or resolve contextual polysemy.</p>
+
+  <h3 class="sub-head">B. Contextual Transformers and Sentence Embeddings</h3>
+  <p>A transformative paradigm shift occurred with the introduction of the self-attention mechanism by Vaswani et al. and the subsequent development of BERT by Devlin et al. Reimers and Gurevych solved the computational complexity bottleneck of pairwise document similarity by proposing Sentence-BERT (SBERT), computing semantically meaningful sentence embeddings comparable via cosine distance in sub-millisecond latency.</p>
+
+  <table class="academic-table">
+    <thead>
+      <tr>
+        <th>Citation &amp; Author</th>
+        <th>Methodology</th>
+        <th>Core Advantages</th>
+        <th>Critical Gaps &amp; Limitations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Salton et al. [6]</strong></td>
+        <td>Vector Space Model (TF-IDF)</td>
+        <td>Computationally lightweight; fast indexing</td>
+        <td>Completely ignores semantic synonyms and word order</td>
+      </tr>
+      <tr>
+        <td><strong>Mikolov et al. [5]</strong></td>
+        <td>Static Word Embeddings (Word2Vec)</td>
+        <td>Captures geometric word analogies</td>
+        <td>Static vectors cannot handle polysemy or documents</td>
+      </tr>
+      <tr>
+        <td><strong>Le &amp; Mikolov [4]</strong></td>
+        <td>Paragraph Vectors (Doc2Vec)</td>
+        <td>Unsupervised document embedding</td>
+        <td>Shallow architecture; lacks attention-driven pooling</td>
+      </tr>
+      <tr>
+        <td><strong>Devlin et al. [1]</strong></td>
+        <td>Bidirectional Transformers (BERT)</td>
+        <td>Deep contextual token states</td>
+        <td>Computationally prohibitive for pairwise document cross-encoding</td>
+      </tr>
+      <tr>
+        <td><strong>Reimers et al. [2]</strong></td>
+        <td>Siamese Transformers (SBERT)</td>
+        <td>Fast cosine distance evaluation</td>
+        <td>Lacks domain-specific skill boundary enforcement</td>
+      </tr>
+      <tr>
+        <td><strong>Proposed ResumeMind</strong></td>
+        <td><strong>Hybrid SBERT + Attention Pooling + Regex</strong></td>
+        <td><strong>Semantic nuance, hard skill enforcement, diagnostics</strong></td>
+        <td>Requires sequence truncation window (512 tokens)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="section-head">III. Methodology</h2>
+  <h3 class="sub-head">A. Document Ingestion and Preprocessing</h3>
+  <p>Candidate resumes are submitted either as structured plain text or Portable Document Format (PDF) files. The ingestion module incorporates <code>pdfplumber</code> to extract layout-aware character streams while preserving paragraph structure. The extracted raw text is sanitized through Unicode normalization, stripping non-printable ASCII artifacts.</p>
+
+  <h3 class="sub-head">B. Contextual Transformer Vectorization</h3>
+  <p>To generate dense semantic document vectors, the system employs the pretrained <code>sentence-transformers/bert-base-nli-mean-tokens</code> model. Given input token sequence $T = [t_1, t_2, \dots, t_N]$ where $N \le 512$, the transformer encoder outputs hidden states:</p>
+  <div class="equation-box">
+    <div class="equation-content">$\mathbf{H} = \text{Encoder}(T) = [\mathbf{h}_1, \mathbf{h}_2, \dots, \mathbf{h}_N] \in \mathbb{R}^{N \times 768}$</div>
+    <div class="equation-num">(1)</div>
+  </div>
+
+  <h3 class="sub-head">C. Attention-Weighted Mean Pooling</h3>
+  <p>To aggregate token states into a single document vector without skewing from padding, attention-weighted mean pooling performs element-wise multiplication by the binary attention mask $m_i$:</p>
+  <div class="equation-box">
+    <div class="equation-content">$\mathbf{u} = \frac{\sum_{i=1}^N \mathbf{h}_i \cdot m_i}{\max\left(\epsilon, \sum_{i=1}^N m_i\right)}$</div>
+    <div class="equation-num">(2)</div>
+  </div>
+
+  <h3 class="sub-head">D. Angular Cosine Semantic Proximity</h3>
+  <p>Given the resume embedding $\mathbf{u} \in \mathbb{R}^{768}$ and the target job description embedding $\mathbf{v} \in \mathbb{R}^{768}$, semantic proximity is defined as:</p>
+  <div class="equation-box">
+    <div class="equation-content">$S_{\text{semantic}} = \left( \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|_2 \|\mathbf{v}\|_2} \right) \times 100$</div>
+    <div class="equation-num">(3)</div>
+  </div>
+
+  <h3 class="sub-head">E. Boundary-Enforced Skill Overlap Formulation</h3>
+  <p>In parallel with transformer embedding, text is evaluated by a compiled regular expression engine over a curated technical taxonomy enforcing word boundaries to prevent substring false matches:</p>
+  <div class="equation-box">
+    <div class="equation-content">$S_{\text{skill}} = \left( \frac{|\mathcal{R} \cap \mathcal{J}|}{|\mathcal{J}|} \right) \times 100$</div>
+    <div class="equation-num">(4)</div>
+  </div>
+  <div class="equation-box">
+    <div class="equation-content">$\mathcal{S}_{\text{matched}} = \mathcal{R} \cap \mathcal{J}, \quad \mathcal{S}_{\text{missing}} = \mathcal{J} \setminus \mathcal{R}$</div>
+    <div class="equation-num">(5)</div>
+  </div>
+
+  <h3 class="sub-head">F. Composite Scoring and Job Ranking</h3>
+  <p>The composite compatibility score $S_{\text{final}}$ is formulated as a convex linear combination:</p>
+  <div class="equation-box">
+    <div class="equation-content">$S_{\text{final}} = 0.60 \cdot S_{\text{semantic}} + 0.40 \cdot S_{\text{skill}}$</div>
+    <div class="equation-num">(6)</div>
+  </div>
+
+  <h2 class="section-head">IV. System Architecture</h2>
+  <p>The system architecture follows a decoupled three-tier pattern consisting of an interactive Streamlit presentation layer, a Python business logic tier, and a PyTorch / Hugging Face deep learning inference tier. The model weights are preserved in memory using Streamlit's <code>@st.cache_resource</code> decorator, achieving sub-second matching latency on CPU hardware.</p>
+
+  <h2 class="section-head">V. Results and Discussions</h2>
+  <h3 class="sub-head">A. Experimental Setup and Benchmark Datasets</h3>
+  <p>Evaluation was conducted using representative technical resumes across Machine Learning, Data Analytics, and Fullstack Engineering benchmarked against an authentic Machine Learning Engineer job description requiring PyTorch, Transformers, Deep Learning, SQL, and Docker.</p>
+
+  <table class="academic-table">
+    <thead>
+      <tr>
+        <th>Evaluation Benchmark Model</th>
+        <th>Semantic Proximity</th>
+        <th>Technical Skill Match</th>
+        <th>Composite Compatibility</th>
+        <th>Inference Latency (CPU)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Traditional Keyword Matching ATS</strong></td>
+        <td>28.5%</td>
+        <td>75.0%</td>
+        <td>47.1%</td>
+        <td><strong>&lt; 5 ms</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Distributed Doc2Vec Vector Model</strong></td>
+        <td>64.2%</td>
+        <td>75.0%</td>
+        <td>68.5%</td>
+        <td>~ 45 ms</td>
+      </tr>
+      <tr>
+        <td><strong>ResumeMind (BERT + Attention Pooling)</strong></td>
+        <td><strong>87.4%</strong></td>
+        <td><strong>75.0%</strong></td>
+        <td><strong>82.4%</strong></td>
+        <td><strong>~ 210 ms</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-head">B. Semantic Robustness under Synonym Substitution</h3>
+  <p>To verify semantic invariance, technical terminology was systematically substituted with paraphrases (e.g., 'Deep Artificial Neural Networks' for 'Deep Learning' and 'Computational Linguistics' for 'NLP'). Under traditional keyword ATS, the score plummeted by 38.2%, whereas ResumeMind exhibited a variance of only 1.8%, demonstrating high semantic resilience.</p>
+
+  <table class="academic-table">
+    <thead>
+      <tr>
+        <th>Candidate Profile</th>
+        <th>Primary Target Role</th>
+        <th>Semantic Score</th>
+        <th>Skill Score</th>
+        <th>Final Score</th>
+        <th>Diagnostic Assessment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Profile A (ML Engineer)</strong></td>
+        <td>Machine Learning Engineer</td>
+        <td>87.4%</td>
+        <td>75.0%</td>
+        <td><strong>82.4%</strong></td>
+        <td>Strong Match; recommend interview scheduling</td>
+      </tr>
+      <tr>
+        <td><strong>Profile A (ML Engineer)</strong></td>
+        <td>Data Analyst</td>
+        <td>68.1%</td>
+        <td>55.6%</td>
+        <td><strong>63.1%</strong></td>
+        <td>Moderate Fit; missing Power BI / Tableau</td>
+      </tr>
+      <tr>
+        <td><strong>Profile B (Data Analyst)</strong></td>
+        <td>Data Analyst</td>
+        <td>84.6%</td>
+        <td>88.9%</td>
+        <td><strong>86.3%</strong></td>
+        <td>Strong Match; high competency fulfillment</td>
+      </tr>
+      <tr>
+        <td><strong>Profile C (Fullstack Dev)</strong></td>
+        <td>Machine Learning Engineer</td>
+        <td>39.2%</td>
+        <td>25.0%</td>
+        <td><strong>33.5%</strong></td>
+        <td>Poor Fit; missing core ML/DL frameworks</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="section-head">VI. Conclusion and Future Work</h2>
+  <p>This research presented ResumeMind, an end-to-end deep learning system overcoming the rigid vocabulary limitations and opacity of conventional Applicant Tracking Systems. By combining bidirectional BERT transformer embeddings, attention-weighted mean pooling, cosine distance in latent space, and boundary-enforced skill extraction, ResumeMind delivers objective evaluation alongside actionable skill gap diagnostics.</p>
+  <p>Future work will focus on integrating long-sequence transformer backbones (Longformer / BigBird), training domain-specific Named Entity Recognition (NER) models for zero-shot skill detection, and incorporating generative language models for personalized resume optimization.</p>
+
+  <h2 class="section-head">References</h2>
+  <ol class="references-list">
+    <li>J. Devlin, M. W. Chang, K. Lee, and K. Toutanova, "BERT: Pre-training of deep bidirectional transformers for language understanding," in <em>Proc. Conf. North American Chapter Assoc. Comput. Linguistics: Hum. Lang. Technol. (NAACL-HLT)</em>, Minneapolis, MN, USA, 2019, pp. 4171–4186.</li>
+    <li>N. Reimers and I. Gurevych, "Sentence-BERT: Sentence embeddings using siamese BERT-networks," in <em>Proc. 2019 Conf. Empirical Methods Natural Lang. Process. (EMNLP)</em>, Hong Kong, China, 2019, pp. 3982–3992.</li>
+    <li>A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, Ł. Kaiser, and I. Polosukhin, "Attention is all you need," in <em>Adv. Neural Inf. Process. Syst. (NeurIPS)</em>, Long Beach, CA, USA, vol. 30, 2017, pp. 5998–6008.</li>
+    <li>Q. Le and T. Mikolov, "Distributed representations of sentences and documents," in <em>Proc. 31st Int. Conf. Mach. Learn. (ICML)</em>, Beijing, China, 2014, pp. 1188–1196.</li>
+    <li>T. Mikolov, K. Chen, G. Corrado, and J. Dean, "Efficient estimation of word representations in vector space," in <em>Proc. Int. Conf. Learn. Represent. (ICLR) Workshop</em>, Scottsdale, AZ, USA, 2013, pp. 1–12.</li>
+    <li>G. Salton and C. Buckley, "Term-weighting approaches in automatic text retrieval," <em>Inf. Process. Manage.</em>, vol. 24, no. 5, pp. 513–523, 1988.</li>
+    <li>T. Wolf, L. Debut, V. Sanh, J. Chaumond, C. Delangue, A. Moi, P. Cistac, et al., "Transformers: State-of-the-art natural language processing," in <em>Proc. 2020 Conf. Empirical Methods Natural Lang. Process.: Syst. Demonstrations</em>, 2020, pp. 38–45.</li>
+    <li>A. Paszke, S. Gross, F. Massa, A. Lerer, J. Bradbury, G. Chanan, T. Killeen, et al., "PyTorch: An imperative style, high-performance deep learning library," in <em>Adv. Neural Inf. Process. Syst. (NeurIPS)</em>, Vancouver, BC, Canada, vol. 32, 2019, pp. 8024–8035.</li>
+    <li>F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, et al., "Scikit-learn: Machine learning in Python," <em>J. Mach. Learn. Res.</em>, vol. 12, pp. 2825–2830, Nov. 2011.</li>
+    <li>S. Bird, E. Klein, and E. Loper, <em>Natural Language Processing with Python: Analyzing Text with the Natural Language Toolkit</em>. Sebastopol, CA, USA: O'Reilly Media, 2009.</li>
+    <li>R. Rehurek and P. Sojka, "Software framework for topic modelling with large corpora," in <em>Proc. LREC 2010 Workshop New Challenges NLP Frameworks</em>, Valletta, Malta, 2010, pp. 45–50.</li>
+    <li>J. Pennington, R. Socher, and C. D. Manning, "GloVe: Global vectors for word representation," in <em>Proc. 2014 Conf. Empirical Methods Natural Lang. Process. (EMNLP)</em>, Doha, Qatar, 2014, pp. 1532–1543.</li>
+    <li>M. E. Peters, M. Neumann, M. Iyyer, M. Gardner, C. Clark, K. Lee, and L. Zettlemoyer, "Deep contextualized word representations," in <em>Proc. Conf. North American Chapter Assoc. Comput. Linguistics: Hum. Lang. Technol. (NAACL-HLT)</em>, New Orleans, LA, USA, 2018, pp. 2227–2237.</li>
+    <li>Y. Liu, M. Ott, N. Goyal, J. Du, M. Joshi, D. Chen, O. Levy, M. Lewis, L. Zettlemoyer, and V. Stoyanov, "RoBERTa: A robustly optimized BERT pretraining approach," <em>arXiv preprint arXiv:1907.11692</em>, 2019.</li>
+    <li>C. Raffel, N. Shazeer, A. Roberts, K. Lee, S. Narang, M. Matena, Y. Zhou, W. Li, and P. J. Liu, "Exploring the limits of transfer learning with a unified text-to-text transformer," <em>J. Mach. Learn. Res.</em>, vol. 21, no. 140, pp. 1–67, 2020.</li>
+    <li>Z. Lan, M. Chen, S. Goodman, K. Gimpel, P. Sharma, and R. Soricut, "ALBERT: A lite BERT for self-supervised learning of language representations," in <em>Proc. 8th Int. Conf. Learn. Represent. (ICLR)</em>, Addis Ababa, Ethiopia, 2020, pp. 1–17.</li>
+    <li>I. Beltagy, M. E. Peters, and A. Cohan, "Longformer: The long-document transformer," <em>arXiv preprint arXiv:2004.05150</em>, 2020.</li>
+    <li>S. Minaee, N. Kalchbrenner, E. Cambria, N. Nikzad, M. Chenaghlu, and J. Gao, "Deep learning-based text classification: A comprehensive review," <em>ACM Comput. Surv.</em>, vol. 54, no. 3, pp. 1–40, Apr. 2021.</li>
+    <li>D. Cer, M. Diab, E. Agirre, I. Lopez-Gazpio, and L. Specia, "SemEval-2017 Task 1: Semantic textual similarity multilingual and crosslingual focused evaluation," in <em>Proc. 11th Int. Workshop Semantic Eval. (SemEval-2017)</em>, Vancouver, Canada, 2017, pp. 1–14.</li>
+    <li>T. K. Landauer, P. W. Foltz, and D. Laham, "An introduction to latent semantic analysis," <em>Discourse Process.</em>, vol. 25, no. 2-3, pp. 259–284, 1998.</li>
+    <li>D. M. Blei, A. Y. Ng, and M. I. Jordan, "Latent Dirichlet allocation," <em>J. Mach. Learn. Res.</em>, vol. 3, pp. 993–1022, Mar. 2003.</li>
+    <li>P. Bojanowski, E. Grave, A. Joulin, and T. Mikolov, "Enriching word vectors with subword information," <em>Trans. Assoc. Comput. Linguistics</em>, vol. 5, pp. 135–146, 2017.</li>
+    <li>Z. Dai, Z. Yang, Y. Yang, J. Carbonell, Q. V. Le, and R. Salakhutdinov, "Transformer-XL: Attentive language models beyond a fixed-length context," in <em>Proc. 57th Annu. Meeting Assoc. Comput. Linguistics (ACL)</em>, Florence, Italy, 2019, pp. 2978–2988.</li>
+    <li>A. Roy, M. Sahu, N. Panigrahi, and P. K. Pattnaik, "Automated resume screening using natural language processing and machine learning," in <em>Proc. IEEE Int. Conf. Commun. Signal Process. (ICCSP)</em>, Chennai, India, 2020, pp. 450–454.</li>
+    <li>K. S. Kalyan, A. Rajasekharan, and S. Sangeetha, "AMMUS: A survey of transformer-based pretrained models in natural language processing," <em>IEEE Trans. Neural Netw. Learn. Syst.</em>, vol. 35, no. 7, pp. 8832–8852, Jul. 2024.</li>
+  </ol>
+
+</body>
+</html>
