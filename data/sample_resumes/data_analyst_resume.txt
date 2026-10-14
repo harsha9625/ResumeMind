@@ -1,0 +1,22 @@
+Sarah Jenkins
+Email: sarah.j@example.edu | Location: New York, NY
+Portfolio: sarahdata.dev | GitHub: github.com/sarahj-analytics
+
+PROFESSIONAL SUMMARY:
+Data Analyst with 2+ years of experience transforming complex datasets into actionable business intelligence. Proficient in Python, SQL, Pandas, NumPy, Power BI, Excel, and statistical modeling.
+
+TECHNICAL SKILLS:
+- Languages: Python, SQL, R
+- Analytics & BI: Excel, Power BI, Tableau, Google Data Studio
+- Libraries: Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Statistics
+- Database & Tools: PostgreSQL, MySQL, Git, Jupyter Notebooks
+
+EXPERIENCE:
+Data Analyst | Insight Dynamics | 2023 - Present
+- Built interactive dashboards in Power BI and Tableau for executive leadership, monitoring key business performance metrics.
+- Executed complex SQL queries and Python data cleaning scripts using Pandas and NumPy across 2M+ customer transaction rows.
+- Conducted hypothesis testing and statistical regression analyses to identify customer retention drivers.
+
+EDUCATION:
+Bachelor of Science in Information Systems & Statistics
+University of Technology | 2019 - 2023

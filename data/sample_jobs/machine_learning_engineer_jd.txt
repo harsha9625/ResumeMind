@@ -1,0 +1,20 @@
+Job Title: Machine Learning Engineer
+Company: Apex Artificial Intelligence Corp
+Location: Remote / San Francisco, CA
+
+Position Overview:
+We are seeking a Machine Learning Engineer to join our Applied Deep Learning team. The ideal candidate will have hands-on experience building, training, and deploying NLP models, transformer architectures, and deep neural networks using PyTorch, TensorFlow, and Hugging Face.
+
+Key Responsibilities:
+- Design, implement, and optimize deep learning algorithms for natural language processing and semantic information retrieval.
+- Build robust data preprocessing pipelines using Python, Pandas, NumPy, and SQL.
+- Implement attention mechanisms, sentence embeddings, and model fine-tuning workflows.
+- Deploy models into containerized microservice architectures using Docker and Git.
+- Collaborate with engineering teams to evaluate model accuracy, latency, and throughput.
+
+Required Qualifications & Technical Skills:
+- Proficiency in Python, PyTorch, TensorFlow, and Hugging Face Transformers.
+- Strong grounding in Machine Learning, Deep Learning, NLP, and Scikit-learn.
+- Experience with relational databases and SQL.
+- Familiarity with Git version control, Docker, and Linux environments.
+- Strong analytical and problem-solving skills with a degree in Computer Science, Data Science, or related field.

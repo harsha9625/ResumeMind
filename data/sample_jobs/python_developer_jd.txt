@@ -1,0 +1,18 @@
+Job Title: Python Developer
+Company: Quantum Soft Systems
+Location: New York, NY / Hybrid
+
+Position Overview:
+We are looking for a skilled Python Developer to build resilient backend services, RESTful APIs, and data processing pipelines. You will collaborate with frontend developers and data teams to deliver high-performance applications.
+
+Key Responsibilities:
+- Develop server-side logic and REST APIs using Python, Django, and Flask.
+- Write efficient SQL queries, manage database schemas, and optimize data transactions.
+- Implement automated testing, continuous integration, and Docker containerization.
+- Maintain clean, documented code and participate in peer code reviews using Git.
+
+Required Technical Skills:
+- Strong core Python programming background.
+- Experience with web frameworks such as Django or Flask.
+- Knowledge of relational databases and SQL (PostgreSQL, MySQL).
+- Experience with REST API design, Docker, and Git.

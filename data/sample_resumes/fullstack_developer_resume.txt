@@ -1,0 +1,22 @@
+David Miller
+Email: david.miller@example.com | San Jose, CA
+GitHub: github.com/davidmiller-dev
+
+PROFESSIONAL SUMMARY:
+Full Stack Software Developer with solid experience in modern web technologies, building scalable client-server applications with React, Node.js, Python, Django, REST APIs, and Docker.
+
+TECHNICAL SKILLS:
+- Frontend: React, JavaScript, HTML, CSS, Redux, Tailwind
+- Backend: Python, Node.js, Django, Flask, Express, REST API
+- Databases: PostgreSQL, MongoDB, SQL
+- DevOps & Tools: Git, Docker, Linux, CI/CD, Postman
+
+EXPERIENCE:
+Full Stack Developer | CloudSolutions Inc. | 2022 - Present
+- Architected RESTful microservices using Python Django and Node.js.
+- Developed dynamic responsive user interfaces in React and Redux.
+- Containerized development environments using Docker and automated Git workflows.
+
+EDUCATION:
+Bachelor of Technology in Computer Science & Engineering
+Institute of Technology | 2018 - 2022

@@ -1,0 +1,34 @@
+Alex Chen
+Email: alex.chen@example.edu | Phone: +1-555-0199 | Location: San Francisco, CA
+LinkedIn: linkedin.com/in/alexchen-ml | GitHub: github.com/alexchen-ai
+
+PROFESSIONAL SUMMARY:
+Innovative Machine Learning Engineer with 3+ years of experience designing and deploying deep learning models, natural language processing (NLP) pipelines, and transformer architectures. Strong expertise in PyTorch, TensorFlow, Hugging Face, Scikit-learn, and scalable MLOps using Docker and AWS.
+
+TECHNICAL SKILLS:
+- Languages: Python, SQL, C++, Bash
+- Deep Learning & ML: PyTorch, TensorFlow, Keras, Hugging Face Transformers, BERT, Scikit-learn, XGBoost
+- NLP: NLTK, Spacy, Tokenization, Attention Mechanisms, Sentence Embeddings, Word2Vec
+- Data Engineering & Tools: Pandas, NumPy, SQL, PostgreSQL, Docker, Git, Linux, AWS
+
+PROFESSIONAL EXPERIENCE:
+AI Research Intern / Junior ML Engineer | DataSphere Labs | 2023 - Present
+- Developed contextual semantic text search engine using Hugging Face BERT and Sentence-Transformers, reducing query latency by 35% and improving recall@10 by 22%.
+- Fine-tuned transformer models on 500K+ technical documents using PyTorch with mixed-precision training.
+- Built end-to-end data preprocessing pipelines utilizing Pandas, NumPy, and SQL for automated ETL workflows.
+- Implemented automated evaluation scripts and unit tests in Python, integrating CI/CD pipelines with Docker.
+
+Graduate Research Assistant | Department of Computer Science | 2022 - 2023
+- Conducted research on attention-weighted mean pooling techniques for dense passage retrieval.
+- Evaluated cosine similarity and bi-encoder vs cross-encoder trade-offs for semantic document matching.
+- Published project code and reproducible benchmarks on GitHub using PyTorch and Hugging Face.
+
+EDUCATION:
+Master of Science in Computer Science (Specialization: Artificial Intelligence & Machine Learning)
+State University | GPA: 3.85 / 4.0
+
+PROJECTS:
+1. Transformer-Based Document Matching System:
+   Designed an intelligent document similarity evaluation tool using PyTorch and BERT sentence embeddings, achieving 91% semantic alignment against expert-annotated pairs.
+2. Deep NLP Resume Classifier:
+   Trained multi-class neural classification models using PyTorch and Scikit-learn, categorizing candidate profiles across 15 engineering domains.
