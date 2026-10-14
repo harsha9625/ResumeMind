@@ -1,4 +1,4 @@
-# Smart ATS Checker: Resume-to-Job Matching System
+# ResumeMind — Smart ATS Checker: Resume-to-Job Matching System
 
 [![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.30%2B-FF4B4B.svg?style=flat&logo=streamlit&logoColor=white)](https://streamlit.io/)

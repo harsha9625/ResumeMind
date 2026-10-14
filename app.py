@@ -361,13 +361,13 @@ st.markdown(
 # ============================================================
 with st.sidebar:
     st.markdown(
-        '<div class="brand">Smart<span>ATS</span></div>',
+        '<div class="brand">Resume<span>Mind</span></div>',
         unsafe_allow_html=True
     )
 
     st.markdown(
         '<div class="brand-subtitle">'
-        'Resume-to-Job Matching System'
+        'Smart ATS Checker • Resume-to-Job Matching'
         '</div>',
         unsafe_allow_html=True
     )
